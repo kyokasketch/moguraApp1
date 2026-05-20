@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>モグラ叩きゲーム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game">
+    <h1>モグラ叩き</h1>
+
+    <section class="score-area" aria-label="ゲーム情報">
+      <div class="info-box">
+        <span>スコア</span>
+        <strong id="score">0</strong>
+      </div>
+      <div class="info-box">
+        <span>残り時間</span>
+        <strong><span id="time">30</span>秒</strong>
+      </div>
+      <div class="info-box">
+        <span>最高スコア</span>
+        <strong id="bestScore">0</strong>
+      </div>
+    </section>
+
+    <p id="message" class="message">スタートを押して遊ぼう！</p>
+
+    <section id="board" class="board" aria-label="モグラ叩きのマス">
+      <button class="hole" type="button" aria-label="穴 1"></button>
+      <button class="hole" type="button" aria-label="穴 2"></button>
+      <button class="hole" type="button" aria-label="穴 3"></button>
+      <button class="hole" type="button" aria-label="穴 4"></button>
+      <button class="hole" type="button" aria-label="穴 5"></button>
+      <button class="hole" type="button" aria-label="穴 6"></button>
+      <button class="hole" type="button" aria-label="穴 7"></button>
+      <button class="hole" type="button" aria-label="穴 8"></button>
+      <button class="hole" type="button" aria-label="穴 9"></button>
+    </section>
+
+    <div class="controls">
+      <button id="startButton" class="control-button" type="button">スタート</button>
+      <button id="restartButton" class="control-button secondary" type="button">リスタート</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
