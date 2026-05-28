@@ -28,21 +28,84 @@
     <p id="message" class="message">スタートを押して遊ぼう！</p>
 
     <section id="board" class="board" aria-label="モグラ叩きのマス">
-      <button class="hole" type="button" aria-label="穴 1"></button>
-      <button class="hole" type="button" aria-label="穴 2"></button>
-      <button class="hole" type="button" aria-label="穴 3"></button>
-      <button class="hole" type="button" aria-label="穴 4"></button>
-      <button class="hole" type="button" aria-label="穴 5"></button>
-      <button class="hole" type="button" aria-label="穴 6"></button>
-      <button class="hole" type="button" aria-label="穴 7"></button>
-      <button class="hole" type="button" aria-label="穴 8"></button>
-      <button class="hole" type="button" aria-label="穴 9"></button>
+      <button class="hole" type="button" aria-label="穴 1">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
+      <button class="hole" type="button" aria-label="穴 2">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
+      <button class="hole" type="button" aria-label="穴 3">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
+      <button class="hole" type="button" aria-label="穴 4">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
+      <button class="hole" type="button" aria-label="穴 5">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
+      <button class="hole" type="button" aria-label="穴 6">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
+      <button class="hole" type="button" aria-label="穴 7">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
+      <button class="hole" type="button" aria-label="穴 8">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
+      <button class="hole" type="button" aria-label="穴 9">
+        <img class="mole-image" alt="" draggable="false">
+        <span class="boss-health" aria-hidden="true"></span>
+      </button>
     </section>
 
     <div class="controls">
       <button id="startButton" class="control-button" type="button">スタート</button>
       <button id="restartButton" class="control-button secondary" type="button">リスタート</button>
     </div>
+
+    <section class="score-history" aria-label="過去のスコア">
+      <h2>最近のスコア</h2>
+      <p id="scoreCompare" class="score-compare">まだ記録がありません</p>
+      <ol id="scoreHistory" class="score-history-list"></ol>
+    </section>
+
+    <section class="mole-guide" aria-label="モグラの点数一覧">
+      <h2>モグラ点数表</h2>
+      <ul class="mole-list">
+        <li class="mole-list-item">
+          <img src="assets/mole-strong.png" alt="ワルモグラ">
+          <div>
+            <span class="mole-name">ワルモグラ</span>
+            <strong>20点</strong>
+            <small>3回叩く</small>
+          </div>
+        </li>
+        <li class="mole-list-item">
+          <img src="assets/mole-sprout.png" alt="埋もれモグラ">
+          <div>
+            <span class="mole-name">埋もれモグラ</span>
+            <strong>5点</strong>
+            <small>1回叩く</small>
+          </div>
+        </li>
+        <li class="mole-list-item">
+          <img src="assets/mole-happy.png" alt="ノーマルモグラ">
+          <div>
+            <span class="mole-name">ノーマルモグラ</span>
+            <strong>10点</strong>
+            <small>1回叩く</small>
+          </div>
+        </li>
+      </ul>
+    </section>
   </main>
 
   <script src="script.js"></script>
