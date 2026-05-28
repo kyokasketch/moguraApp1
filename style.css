@@ -412,3 +412,55 @@ h1 {
     gap: 10px;
   }
 }
+
+@media (min-width: 860px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .game {
+    display: grid;
+    grid-template-columns: 460px 320px;
+    grid-template-areas:
+      "title title"
+      "score score"
+      "message message"
+      "board history"
+      "controls guide";
+    column-gap: 22px;
+    align-items: start;
+    width: min(100%, 802px);
+  }
+
+  h1 {
+    grid-area: title;
+  }
+
+  .score-area {
+    grid-area: score;
+  }
+
+  .message {
+    grid-area: message;
+  }
+
+  .board {
+    grid-area: board;
+  }
+
+  .controls {
+    grid-area: controls;
+    width: min(100%, 420px);
+    margin: 18px auto 0;
+  }
+
+  .score-history {
+    grid-area: history;
+    margin-top: 0;
+  }
+
+  .mole-guide {
+    grid-area: guide;
+    margin-top: 18px;
+  }
+}
