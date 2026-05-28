@@ -425,8 +425,8 @@ h1 {
       "title title"
       "score score"
       "message message"
-      "board history"
-      "controls guide";
+      "board side"
+      "controls side";
     column-gap: 22px;
     align-items: start;
     width: min(100%, 802px);
@@ -454,13 +454,17 @@ h1 {
     margin: 18px auto 0;
   }
 
+  .side-panels {
+    display: grid;
+    grid-area: side;
+    gap: 18px;
+  }
+
   .score-history {
-    grid-area: history;
     margin-top: 0;
   }
 
   .mole-guide {
-    grid-area: guide;
-    margin-top: 18px;
+    margin-top: 0;
   }
 }
