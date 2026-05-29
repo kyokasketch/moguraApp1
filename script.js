@@ -45,6 +45,25 @@ let moleTimer = null;
 let countdownTimer = null;
 const moleShowTime = 1200;
 
+function showTapHammer(event) {
+  const isTouchLike = event.pointerType !== "mouse" || window.matchMedia("(pointer: coarse)").matches;
+
+  if (!isTouchLike) {
+    return;
+  }
+
+  const hammer = document.createElement("img");
+  hammer.className = "tap-hammer";
+  hammer.src = "assets/hammer-cursor.svg";
+  hammer.alt = "";
+  hammer.setAttribute("aria-hidden", "true");
+  hammer.style.left = `${event.clientX}px`;
+  hammer.style.top = `${event.clientY}px`;
+
+  document.body.appendChild(hammer);
+  setTimeout(() => hammer.remove(), 300);
+}
+
 function getSavedBestScore() {
   // ブラウザによっては保存機能が使えないので、安全に読み込みます。
   try {
@@ -287,3 +306,4 @@ holes.forEach((hole, index) => {
 
 startButton.addEventListener("click", startGame);
 restartButton.addEventListener("click", restartGame);
+document.addEventListener("pointerdown", showTapHammer, { passive: true });
