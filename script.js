@@ -3,6 +3,7 @@ const scoreText = document.getElementById("score");
 const timeText = document.getElementById("time");
 const bestScoreText = document.getElementById("bestScore");
 const message = document.getElementById("message");
+const hitMessage = document.getElementById("hitMessage");
 const startButton = document.getElementById("startButton");
 const restartButton = document.getElementById("restartButton");
 const scoreCompare = document.getElementById("scoreCompare");
@@ -197,6 +198,7 @@ function startGame() {
 
   updateScore();
   updateTime();
+  hitMessage.textContent = "叩いたモグラと点数がここに出ます";
   message.textContent = "モグラをタップ！";
   startButton.disabled = true;
   restartButton.disabled = false;
@@ -275,7 +277,8 @@ holes.forEach((hole, index) => {
 
     score += currentMoleType.points;
     updateScore();
-    message.textContent = `${currentMoleType.name}を倒した！+${currentMoleType.points}点`;
+    hitMessage.textContent = `${currentMoleType.name}＋${currentMoleType.points}点！！`;
+    message.textContent = `${currentMoleType.name}を倒した！`;
     currentMoleType = null;
     currentMoleHp = 0;
     showMole();

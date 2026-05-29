@@ -55,99 +55,120 @@ h1 {
 
 .message {
   min-height: 28px;
-  margin: 10px 0 14px;
+  margin: 6px 0 14px;
   font-size: 18px;
   font-weight: 700;
+}
+
+.hit-message {
+  min-height: 36px;
+  margin: 10px 0 0;
+  padding: 7px 10px;
+  border: 2px solid #f1c05b;
+  border-radius: 8px;
+  background: #fff7d7;
+  color: #754318;
+  font-size: 19px;
+  font-weight: 900;
 }
 
 .board {
   position: relative;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
   width: min(100%, 420px);
   margin: 0 auto;
-  padding: 118px 20px 24px;
+  aspect-ratio: 1368 / 1356;
+  padding: 0;
   border-radius: 8px;
-  background:
-    radial-gradient(ellipse at 18% 15%, #ffffff 0 9%, transparent 9.5%),
-    radial-gradient(ellipse at 78% 12%, #ffffff 0 10%, transparent 10.5%),
-    radial-gradient(ellipse at 20% 34%, #67c935 0 25%, transparent 25.5%),
-    radial-gradient(ellipse at 55% 26%, #5dc22d 0 32%, transparent 32.5%),
-    radial-gradient(ellipse at 88% 35%, #69c835 0 26%, transparent 26.5%),
-    linear-gradient(#96dcff 0 36%, #8fdc39 36% 100%);
+  background: url("assets/stage-background.png") center / cover no-repeat;
   box-shadow:
     inset 0 0 0 2px rgba(255, 255, 255, 0.42),
     0 5px 0 #6faf2d;
 }
 
 .board::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse at 12% 61%, rgba(92, 166, 38, 0.32) 0 2%, transparent 2.4%),
-    radial-gradient(ellipse at 31% 48%, rgba(92, 166, 38, 0.32) 0 1.7%, transparent 2.1%),
-    radial-gradient(ellipse at 52% 42%, rgba(92, 166, 38, 0.3) 0 1.7%, transparent 2.1%),
-    radial-gradient(ellipse at 77% 53%, rgba(92, 166, 38, 0.3) 0 2%, transparent 2.4%),
-    radial-gradient(ellipse at 90% 24%, rgba(58, 139, 48, 0.46) 0 1.7%, transparent 2.1%),
-    radial-gradient(ellipse at 44% 13%, rgba(58, 139, 48, 0.46) 0 1.7%, transparent 2.1%);
-  pointer-events: none;
+  content: none;
 }
 
 .hole {
-  position: relative;
-  overflow: hidden;
+  position: absolute;
+  overflow: visible;
   z-index: 1;
-  width: 100%;
-  aspect-ratio: 1;
+  width: 28%;
+  height: 25%;
   border: 0;
   border-radius: 8px;
   background: transparent;
   box-shadow: none;
   cursor: url("assets/hammer-cursor.svg") 20 20, pointer;
   touch-action: manipulation;
+  transform: translate(-50%, -56%);
+}
+
+.hole.mole {
+  z-index: 2;
 }
 
 .hole::before {
-  content: "";
-  position: absolute;
-  left: 9%;
-  right: 9%;
-  bottom: 9%;
-  z-index: 3;
-  height: 22%;
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse at 50% 40%, #2f170e 0 44%, #5f351d 45% 61%, transparent 62%),
-    radial-gradient(ellipse at 50% 50%, #f5e2a8 0 65%, transparent 66%);
-  box-shadow:
-    0 3px 0 rgba(95, 62, 29, 0.18),
-    inset 0 -3px 0 rgba(83, 48, 20, 0.16);
+  content: none;
 }
 
 .hole::after {
-  content: "";
-  position: absolute;
-  left: 18%;
-  right: 18%;
-  bottom: 9%;
-  z-index: 5;
-  height: 13%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 40%, #b7782e 0 62%, #7e4a1f 63% 100%);
-  pointer-events: none;
+  content: none;
+}
+
+.hole:nth-child(1) {
+  left: 22%;
+  top: 49%;
+}
+
+.hole:nth-child(2) {
+  left: 50%;
+  top: 49%;
+}
+
+.hole:nth-child(3) {
+  left: 77%;
+  top: 49%;
+}
+
+.hole:nth-child(4) {
+  left: 22%;
+  top: 64.5%;
+}
+
+.hole:nth-child(5) {
+  left: 50%;
+  top: 64.5%;
+}
+
+.hole:nth-child(6) {
+  left: 77%;
+  top: 64.5%;
+}
+
+.hole:nth-child(7) {
+  left: 22%;
+  top: 81%;
+}
+
+.hole:nth-child(8) {
+  left: 50%;
+  top: 81%;
+}
+
+.hole:nth-child(9) {
+  left: 77%;
+  top: 81%;
 }
 
 .mole-image {
   position: absolute;
   left: 50%;
-  bottom: 13%;
+  bottom: 28%;
   z-index: 6;
-  width: 96%;
-  height: 96%;
+  width: 82%;
+  height: 122%;
   object-fit: contain;
   opacity: 0;
   transform: translateX(-50%) translateY(38%) scale(0.42);
@@ -159,7 +180,7 @@ h1 {
 
 .hole.mole .mole-image {
   opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1);
+  transform: translateX(-50%) translateY(0) scale(1.05);
   animation: pop 0.22s ease;
 }
 
@@ -167,6 +188,22 @@ h1 {
 .hole.sprout .mole-image {
   width: 100%;
   height: 100%;
+}
+
+.hole.happy .mole-image {
+  bottom: 16%;
+  width: 92%;
+  height: 132%;
+}
+
+.hole:nth-of-type(2).happy .mole-image,
+.hole:nth-of-type(3).happy .mole-image,
+.hole:nth-of-type(5).happy .mole-image,
+.hole:nth-of-type(6).happy .mole-image,
+.hole:nth-of-type(8).happy .mole-image,
+.hole:nth-of-type(9).happy .mole-image {
+  left: 46%;
+  bottom: 12%;
 }
 
 .boss-health {
@@ -192,7 +229,7 @@ h1 {
 }
 
 .hole.hit {
-  animation: hit 0.2s ease;
+  animation: none;
 }
 
 .hole.damaged .mole-image {
@@ -424,6 +461,7 @@ h1 {
     grid-template-areas:
       "title title"
       "score score"
+      "hit hit"
       "message message"
       "board side"
       "controls side";
@@ -438,6 +476,10 @@ h1 {
 
   .score-area {
     grid-area: score;
+  }
+
+  .hit-message {
+    grid-area: hit;
   }
 
   .message {
