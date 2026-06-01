@@ -44,6 +44,19 @@ let gameRunning = false;
 let moleTimer = null;
 let countdownTimer = null;
 const moleShowTime = 1200;
+let hammerSwingTimer = null;
+
+function showDesktopHammerSwing(event) {
+  if (event.pointerType !== "mouse") {
+    return;
+  }
+
+  document.body.classList.add("hammer-swing");
+  clearTimeout(hammerSwingTimer);
+  hammerSwingTimer = setTimeout(() => {
+    document.body.classList.remove("hammer-swing");
+  }, 250);
+}
 
 function showTapHammer(event) {
   const isTouchLike = event.pointerType !== "mouse" || window.matchMedia("(pointer: coarse)").matches;
@@ -306,4 +319,5 @@ holes.forEach((hole, index) => {
 
 startButton.addEventListener("click", startGame);
 restartButton.addEventListener("click", restartGame);
+document.addEventListener("pointerdown", showDesktopHammerSwing, { passive: true });
 document.addEventListener("pointerdown", showTapHammer, { passive: true });

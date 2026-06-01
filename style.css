@@ -15,6 +15,11 @@ body {
   padding: 20px;
 }
 
+body:active,
+body.hammer-swing {
+  cursor: url("assets/hammer-cursor-hit.svg") 20 20, auto;
+}
+
 .game {
   width: min(100%, 460px);
   text-align: center;
@@ -103,6 +108,11 @@ h1 {
   cursor: url("assets/hammer-cursor.svg") 20 20, pointer;
   touch-action: manipulation;
   transform: translate(-50%, -56%);
+}
+
+body:active .hole,
+body.hammer-swing .hole {
+  cursor: url("assets/hammer-cursor-hit.svg") 20 20, pointer;
 }
 
 .hole.mole {
@@ -259,6 +269,7 @@ h1 {
 .control-button:active {
   transform: translateY(2px);
   box-shadow: 0 2px 0 #1d5339;
+  cursor: url("assets/hammer-cursor-hit.svg") 20 20, pointer;
 }
 
 .control-button.secondary {
