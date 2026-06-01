@@ -279,8 +279,8 @@ h1 {
 .tap-hammer {
   position: fixed;
   z-index: 9999;
-  width: 56px;
-  height: 56px;
+  width: 76px;
+  height: 76px;
   transform: translate(-34%, -34%) rotate(-18deg) scale(0.8);
   transform-origin: 70% 70%;
   pointer-events: none;
