@@ -200,6 +200,12 @@ body.hammer-swing .hole {
   height: 100%;
 }
 
+.hole.bomb .mole-image {
+  bottom: 10%;
+  width: 125%;
+  height: 125%;
+}
+
 .hole.happy .mole-image {
   bottom: 16%;
   width: 92%;

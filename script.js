@@ -15,7 +15,8 @@ const moleTypes = [
     image: "assets/mole-strong.png",
     hp: 3,
     points: 20,
-    rate: 0.2
+    rate: 0.2,
+    showTime: 2000
   },
   {
     id: "sprout",
@@ -23,7 +24,8 @@ const moleTypes = [
     image: "assets/mole-sprout.png",
     hp: 1,
     points: 5,
-    rate: 0.2
+    rate: 0.2,
+    showTime: 1000
   },
   {
     id: "happy",
@@ -31,7 +33,17 @@ const moleTypes = [
     image: "assets/mole-happy.png",
     hp: 1,
     points: 10,
-    rate: 0.6
+    rate: 0.45,
+    showTime: 1000
+  },
+  {
+    id: "bomb",
+    name: "爆弾モグラ",
+    image: "assets/mole-bomb.png",
+    hp: 1,
+    points: -10,
+    rate: 0.15,
+    showTime: 1500
   }
 ];
 
@@ -43,7 +55,6 @@ let currentMoleHp = 0;
 let gameRunning = false;
 let moleTimer = null;
 let countdownTimer = null;
-const moleShowTime = 1200;
 let hammerSwingTimer = null;
 
 function showDesktopHammerSwing(event) {
@@ -152,6 +163,10 @@ function renderScoreHistory() {
   });
 }
 
+function formatPoints(points) {
+  return points > 0 ? `＋${points}` : `${points}`;
+}
+
 // 最高スコアは、使えるブラウザでは自動で保存します。
 let bestScore = getSavedBestScore();
 let scoreHistory = getScoreHistory();
@@ -163,7 +178,7 @@ function clearMoles() {
   holes.forEach((hole, index) => {
     const health = hole.querySelector(".boss-health");
 
-    hole.classList.remove("mole", "strong", "sprout", "happy", "hit", "damaged");
+    hole.classList.remove("mole", "strong", "sprout", "happy", "bomb", "hit", "damaged");
     hole.setAttribute("aria-label", `穴 ${index + 1}`);
     health.textContent = "";
   });
@@ -183,8 +198,18 @@ function chooseMoleType() {
   return moleTypes[moleTypes.length - 1];
 }
 
+function scheduleNextMole(showTime) {
+  clearTimeout(moleTimer);
+
+  if (!gameRunning) {
+    return;
+  }
+
+  moleTimer = setTimeout(showMole, showTime);
+}
+
 function showMole() {
-  if (currentMoleType && currentMoleHp > 0) {
+  if (!gameRunning) {
     return;
   }
 
@@ -207,9 +232,13 @@ function showMole() {
   if (currentMoleType.hp > 1) {
     health.textContent = `HP ${currentMoleHp}`;
     message.textContent = `${currentMoleType.name}出現！3回叩こう！`;
+  } else if (currentMoleType.id === "bomb") {
+    message.textContent = "爆弾モグラ出現！気をつけて！";
   } else {
     message.textContent = "モグラをタップ！";
   }
+
+  scheduleNextMole(currentMoleType.showTime);
 }
 
 function updateScore() {
@@ -237,9 +266,6 @@ function startGame() {
 
   showMole();
 
-  // モグラの場所を何度も変えます。数字を大きくすると、ゆっくりになります。
-  moleTimer = setInterval(showMole, moleShowTime);
-
   // 1秒ごとに残り時間を減らします。
   countdownTimer = setInterval(() => {
     timeLeft -= 1;
@@ -253,7 +279,7 @@ function startGame() {
 
 function endGame() {
   gameRunning = false;
-  clearInterval(moleTimer);
+  clearTimeout(moleTimer);
   clearInterval(countdownTimer);
 
   clearMoles();
@@ -281,7 +307,7 @@ function endGame() {
 }
 
 function restartGame() {
-  clearInterval(moleTimer);
+  clearTimeout(moleTimer);
   clearInterval(countdownTimer);
   clearMoles();
   startGame();
@@ -309,7 +335,7 @@ holes.forEach((hole, index) => {
 
     score += currentMoleType.points;
     updateScore();
-    hitMessage.textContent = `${currentMoleType.name}＋${currentMoleType.points}点！！`;
+    hitMessage.textContent = `${currentMoleType.name}${formatPoints(currentMoleType.points)}点！！`;
     message.textContent = `${currentMoleType.name}を倒した！`;
     currentMoleType = null;
     currentMoleHp = 0;
